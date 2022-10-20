@@ -22,15 +22,13 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
-	"syscall"
 	"time"
-
-	"golang.org/x/term"
 
 	"github.com/dominant-strategies/go-quai/common"
 	"github.com/dominant-strategies/go-quai/p2p/dnsdisc"
 	"github.com/dominant-strategies/go-quai/p2p/enode"
 	"github.com/dominant-strategies/quai-accounts/keystore"
+	"github.com/dominant-strategies/quai-devp2p/internal/prompt"
 	"github.com/urfave/cli/v2"
 )
 
@@ -258,11 +256,8 @@ func loadSigningKey(keyfile string) *ecdsa.PrivateKey {
 	if err != nil {
 		exit(fmt.Errorf("failed to read the keyfile at '%s': %v", keyfile, err))
 	}
-	bytePassword, err := term.ReadPassword(int(syscall.Stdin))
-	if err != nil {
-		exit(fmt.Errorf("failed to read the password at '%s': %v", keyfile, err))
-	}
-	key, err := keystore.DecryptKey(keyjson, string(bytePassword))
+	password, _ := prompt.Stdin.PromptPassword("Please enter the password for '" + keyfile + "': ")
+	key, err := keystore.DecryptKey(keyjson, password)
 	if err != nil {
 		exit(fmt.Errorf("error decrypting key: %v", err))
 	}
