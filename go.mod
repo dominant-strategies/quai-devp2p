@@ -1,7 +1,5 @@
 module github.com/dominant-strategies/quai-devp2p
 
-replace github.com/dominant-strategies/go-quai => /Users/alan/code/go-quai
-
 go 1.18
 
 require (
@@ -11,7 +9,7 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/route53 v1.22.2
 	github.com/cloudflare/cloudflare-go v0.52.0
 	github.com/davecgh/go-spew v1.1.1
-	github.com/dominant-strategies/go-quai v0.0.0-20221018195852-b43cfc58e6f3
+	github.com/dominant-strategies/go-quai v0.0.0-20221212224344-56030f28f1be
 	github.com/dominant-strategies/quai-accounts v0.0.0-20221018202534-b7e8dff9f664
 	github.com/fjl/memsize v0.0.1
 	github.com/hashicorp/go-bexpr v0.1.11
