@@ -225,10 +225,10 @@ func minAgeFilter(args []string) (nodeFilter, error) {
 func quaiFilter(args []string) (nodeFilter, error) {
 	var filter forkid.Filter
 	switch args[0] {
-	case "mainnet":
-		filter = forkid.NewStaticFilter(params.MainnetChainConfig, params.MainnetGenesisHash)
-	case "ropsten":
-		filter = forkid.NewStaticFilter(params.RopstenChainConfig, params.RopstenGenesisHash)
+	case "colosseum":
+		filter = forkid.NewStaticFilter(params.ColosseumChainConfig, params.ColosseumGenesisHash)
+	case "garden":
+		filter = forkid.NewStaticFilter(params.GardenChainConfig, params.GardenGenesisHash)
 	default:
 		return nil, fmt.Errorf("unknown network %q", args[0])
 	}
