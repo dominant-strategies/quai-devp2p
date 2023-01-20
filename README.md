@@ -44,13 +44,13 @@ set to standard output. The following filters are supported:
 - `-limit <N>` limits the output set to N entries, taking the top N nodes by score
 - `-ip <CIDR>` filters nodes by IP subnet
 - `-min-age <duration>` filters nodes by 'first seen' time
-- `-quai-network <mainnet/ropsten>` filters nodes by "eth" ENR entry
+- `-quai-network <colosseum/garden>` filters nodes by "eth" ENR entry
 
 
 For example, given a node set in `nodes.json`, you could create a filtered set containing
-up to 20 eth mainnet nodes which also support snap sync using this command:
+up to 20 quai colosseum nodes which also support snap sync using this command:
 
-    devp2p nodeset filter nodes.json -quai-network mainnet -snap -limit 20
+    devp2p nodeset filter nodes.json -quai-network colosseum -snap -limit 20
 
 ### Discovery v4 Utilities
 
