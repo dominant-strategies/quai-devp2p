@@ -19,8 +19,12 @@ package main
 import (
 	"time"
 
+	"github.com/dominant-strategies/go-quai/core/forkid"
 	"github.com/dominant-strategies/go-quai/log"
 	"github.com/dominant-strategies/go-quai/p2p/enode"
+	"github.com/dominant-strategies/go-quai/p2p/enr"
+	"github.com/dominant-strategies/go-quai/params"
+	"github.com/dominant-strategies/go-quai/rlp"
 )
 
 type crawler struct {
@@ -139,6 +143,25 @@ func (c *crawler) updateNode(n *enode.Node) {
 			node.FirstResponse = node.LastCheck
 		}
 		node.LastResponse = node.LastCheck
+	}
+	
+	colosseumFilter := forkid.NewStaticFilter(params.ColosseumChainConfig, params.ColosseumGenesisHash)
+	gardenFilter := forkid.NewStaticFilter(params.GardenChainConfig, params.GardenGenesisHash)
+	
+	f := func(n nodeJSON, filter forkid.Filter) bool {
+		var eth struct {
+			ForkID forkid.ID
+			Tail   []rlp.RawValue `rlp:"tail"`
+		}
+		if n.N.Load(enr.WithEntry("eth", &eth)) != nil {
+			return false
+		}
+		return filter(eth.ForkID) == nil
+	}
+
+	// Check if the node is a colosseum node.
+	if !(f(node, colosseumFilter) || f(node, gardenFilter)) {
+		node.Score = -1
 	}
 
 	// Store/update node in output set.

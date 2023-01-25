@@ -245,23 +245,3 @@ func quaiFilter(args []string) (nodeFilter, error) {
 	}
 	return f, nil
 }
-
-func lesFilter(args []string) (nodeFilter, error) {
-	f := func(n nodeJSON) bool {
-		var les struct {
-			Tail []rlp.RawValue `rlp:"tail"`
-		}
-		return n.N.Load(enr.WithEntry("les", &les)) == nil
-	}
-	return f, nil
-}
-
-func snapFilter(args []string) (nodeFilter, error) {
-	f := func(n nodeJSON) bool {
-		var snap struct {
-			Tail []rlp.RawValue `rlp:"tail"`
-		}
-		return n.N.Load(enr.WithEntry("snap", &snap)) == nil
-	}
-	return f, nil
-}
