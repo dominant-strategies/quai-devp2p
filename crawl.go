@@ -17,6 +17,7 @@
 package main
 
 import (
+	"fmt"
 	"time"
 
 	"github.com/dominant-strategies/go-quai/core/forkid"
@@ -144,10 +145,11 @@ func (c *crawler) updateNode(n *enode.Node) {
 		}
 		node.LastResponse = node.LastCheck
 	}
-	
-	colosseumFilter := forkid.NewStaticFilter(params.ColosseumChainConfig, params.ColosseumGenesisHash)
-	gardenFilter := forkid.NewStaticFilter(params.GardenChainConfig, params.GardenGenesisHash)
-	
+
+	fmt.Println("Node", node)
+
+	gardenFilter := forkid.NewStaticFilter(params.Blake3PowGardenChainConfig, params.Blake3PowGardenGenesisHash)
+
 	f := func(n nodeJSON, filter forkid.Filter) bool {
 		var eth struct {
 			ForkID forkid.ID
@@ -160,7 +162,7 @@ func (c *crawler) updateNode(n *enode.Node) {
 	}
 
 	// Check if the node is a colosseum node.
-	if !(f(node, colosseumFilter) || f(node, gardenFilter)) {
+	if !f(node, gardenFilter) {
 		node.Score = -1
 	}
 
