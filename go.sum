@@ -107,8 +107,12 @@ github.com/dominant-strategies/bn256 v0.0.0-20220930122411-fbf930a7493d h1:hkL13
 github.com/dominant-strategies/bn256 v0.0.0-20220930122411-fbf930a7493d/go.mod h1:nvtPJPChairu4o4iX2XGrstOFpLaAgNYhrUCl5bSng4=
 github.com/dominant-strategies/go-quai v0.13.0-pre.0.0.20230912010933-8e3a3eadde9b h1:bAvxk50/sh8S+sp9MaKtkKz/0rO/QT+riQnyUrl7vYc=
 github.com/dominant-strategies/go-quai v0.13.0-pre.0.0.20230912010933-8e3a3eadde9b/go.mod h1:LQ/o4Mrx1YV/4TJK2o3fKuJIx811LpirNCk1FrrxkTQ=
+github.com/dominant-strategies/go-quai v0.16.0-rc.0 h1:8S48/08qEESX9K9DVGLvaT2a7cLj8eZ9GeXuGLPyVag=
+github.com/dominant-strategies/go-quai v0.16.0-rc.0/go.mod h1:LQ/o4Mrx1YV/4TJK2o3fKuJIx811LpirNCk1FrrxkTQ=
 github.com/dominant-strategies/quai-accounts v0.0.0-20221018202534-b7e8dff9f664 h1:olkQsGVSBBrKCxgHC5C4+4yTuni2HFkeq+EfQbynAoo=
 github.com/dominant-strategies/quai-accounts v0.0.0-20221018202534-b7e8dff9f664/go.mod h1:muyQZX3IEnbBSZGGmJE0E9iSjy2lF1LE3aejj1n/42s=
+github.com/dominant-strategies/quai-accounts v0.0.0-20230908214152-4847c5079469 h1:0riKjGKTjuBYt0y4CBhUA+Jci4fsmvPvwpehNdmjzA0=
+github.com/dominant-strategies/quai-accounts v0.0.0-20230908214152-4847c5079469/go.mod h1:/jug+1AEQfMPe3lTyj/kgaVAsTjeRvsNDc0Qf/xxUCY=
 github.com/dustin/go-humanize v1.0.0/go.mod h1:HtrtbFcZ19U5GC7JDqmcUSB87Iq5E25KnS6fMYU6eOk=
 github.com/edsrzf/mmap-go v1.1.0 h1:6EUwBLQ/Mcr1EYLE4Tn1VdW1A4ckqCQWZBw8Hr0kjpQ=
 github.com/edsrzf/mmap-go v1.1.0/go.mod h1:19H/e8pUPLicwkyNgOykDXkJ9F0MHE+Z52B8EIth78Q=

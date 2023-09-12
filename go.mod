@@ -9,8 +9,8 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/route53 v1.22.2
 	github.com/cloudflare/cloudflare-go v0.52.0
 	github.com/davecgh/go-spew v1.1.1
-	github.com/dominant-strategies/go-quai v0.13.0-pre.0.0.20230912010933-8e3a3eadde9b
-	github.com/dominant-strategies/quai-accounts v0.0.0-20221018202534-b7e8dff9f664
+	github.com/dominant-strategies/go-quai v0.16.0-rc.0
+	github.com/dominant-strategies/quai-accounts v0.0.0-20230908214152-4847c5079469
 	github.com/fjl/memsize v0.0.1
 	github.com/hashicorp/go-bexpr v0.1.11
 	github.com/mattn/go-colorable v0.1.13
