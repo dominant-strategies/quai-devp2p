@@ -18,10 +18,8 @@ package debug
 
 import (
 	"fmt"
-	"io"
 	"net/http"
 	_ "net/http/pprof" // nolint: gosec
-	"os"
 	"runtime"
 
 	"github.com/dominant-strategies/go-quai/log"
@@ -29,8 +27,6 @@ import (
 	"github.com/dominant-strategies/go-quai/metrics/exp"
 	"github.com/dominant-strategies/quai-devp2p/internal/flags"
 	"github.com/fjl/memsize/memsizeui"
-	"github.com/mattn/go-colorable"
-	"github.com/mattn/go-isatty"
 	"github.com/urfave/cli/v2"
 )
 
@@ -121,47 +117,9 @@ var Flags = []cli.Flag{
 	traceFlag,
 }
 
-var glogger *log.GlogHandler
-
-func init() {
-	glogger = log.NewGlogHandler(log.StreamHandler(os.Stderr, log.TerminalFormat(false)))
-	glogger.Verbosity(log.LvlInfo)
-	log.Root().SetHandler(glogger)
-}
-
 // Setup initializes profiling and logging based on the CLI flags.
 // It should be called as early as possible in the program.
 func Setup(ctx *cli.Context) error {
-	var ostream log.Handler
-	output := io.Writer(os.Stderr)
-	if ctx.Bool(logjsonFlag.Name) {
-		ostream = log.StreamHandler(output, log.JSONFormat())
-	} else {
-		usecolor := (isatty.IsTerminal(os.Stderr.Fd()) || isatty.IsCygwinTerminal(os.Stderr.Fd())) && os.Getenv("TERM") != "dumb"
-		if usecolor {
-			output = colorable.NewColorableStderr()
-		}
-		ostream = log.StreamHandler(output, log.TerminalFormat(usecolor))
-	}
-	glogger.SetHandler(ostream)
-
-	// logging
-	verbosity := ctx.Int(verbosityFlag.Name)
-	glogger.Verbosity(log.Lvl(verbosity))
-	vmodule := ctx.String(vmoduleFlag.Name)
-	glogger.Vmodule(vmodule)
-
-	debug := ctx.Bool(debugFlag.Name)
-	if ctx.IsSet(debugFlag.Name) {
-		debug = ctx.Bool(debugFlag.Name)
-	}
-	log.PrintOrigins(debug)
-
-	backtrace := ctx.String(backtraceAtFlag.Name)
-	glogger.BacktraceAt(backtrace)
-
-	log.Root().SetHandler(glogger)
-
 	// profiling, tracing
 	runtime.MemProfileRate = memprofilerateFlag.Value
 	if ctx.IsSet(memprofilerateFlag.Name) {

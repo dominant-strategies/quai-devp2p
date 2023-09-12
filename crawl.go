@@ -144,10 +144,10 @@ func (c *crawler) updateNode(n *enode.Node) {
 		}
 		node.LastResponse = node.LastCheck
 	}
-	
-	colosseumFilter := forkid.NewStaticFilter(params.ColosseumChainConfig, params.ColosseumGenesisHash)
-	gardenFilter := forkid.NewStaticFilter(params.GardenChainConfig, params.GardenGenesisHash)
-	
+
+	colosseumFilter := forkid.NewStaticFilter(params.Blake3PowColosseumChainConfig, params.Blake3PowColosseumGenesisHash)
+	gardenFilter := forkid.NewStaticFilter(params.Blake3PowGardenChainConfig, params.Blake3PowGardenGenesisHash)
+
 	f := func(n nodeJSON, filter forkid.Filter) bool {
 		var eth struct {
 			ForkID forkid.ID
@@ -160,7 +160,7 @@ func (c *crawler) updateNode(n *enode.Node) {
 	}
 
 	// Check if the node is a colosseum node.
-	if !(f(node, colosseumFilter) || f(node, gardenFilter)) {
+	if !f(node, gardenFilter) || !f(node, colosseumFilter) {
 		node.Score = -1
 	}
 

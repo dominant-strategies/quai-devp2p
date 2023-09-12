@@ -19,7 +19,6 @@ package main
 import (
 	"os"
 
-	"github.com/dominant-strategies/go-quai/log"
 	"github.com/dominant-strategies/quai-devp2p/internal/utesting"
 	"github.com/dominant-strategies/quai-devp2p/internal/v4test"
 	"github.com/urfave/cli/v2"
@@ -51,10 +50,6 @@ func runTests(ctx *cli.Context, tests []utesting.Test) error {
 	// Filter test cases.
 	if ctx.IsSet(testPatternFlag.Name) {
 		tests = utesting.MatchTests(tests, ctx.String(testPatternFlag.Name))
-	}
-	// Disable logging unless explicitly enabled.
-	if !ctx.IsSet("verbosity") && !ctx.IsSet("vmodule") {
-		log.Root().SetHandler(log.DiscardHandler())
 	}
 	// Run the tests.
 	var run = utesting.RunTests

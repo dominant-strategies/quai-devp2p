@@ -226,9 +226,9 @@ func quaiFilter(args []string) (nodeFilter, error) {
 	var filter forkid.Filter
 	switch args[0] {
 	case "colosseum":
-		filter = forkid.NewStaticFilter(params.ColosseumChainConfig, params.ColosseumGenesisHash)
+		filter = forkid.NewStaticFilter(params.Blake3PowColosseumChainConfig, params.Blake3PowColosseumGenesisHash)
 	case "garden":
-		filter = forkid.NewStaticFilter(params.GardenChainConfig, params.GardenGenesisHash)
+		filter = forkid.NewStaticFilter(params.Blake3PowGardenChainConfig, params.Blake3PowGardenGenesisHash)
 	default:
 		return nil, fmt.Errorf("unknown network %q", args[0])
 	}
