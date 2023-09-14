@@ -226,7 +226,7 @@ func quaiFilter(args []string) (nodeFilter, error) {
 	var filter forkid.Filter
 	switch args[0] {
 	case "colosseum":
-		filter = forkid.NewStaticFilter(params.Blake3PowColosseumChainConfig, params.Blake3PowColosseumGenesisHash)
+		filter = forkid.NewStaticFilter(params.ProgpowColosseumChainConfig, params.ProgpowColosseumGenesisHash)
 	case "garden":
 		filter = forkid.NewStaticFilter(params.Blake3PowGardenChainConfig, params.Blake3PowGardenGenesisHash)
 	default:
