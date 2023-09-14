@@ -160,7 +160,7 @@ func (c *crawler) updateNode(n *enode.Node) {
 	}
 
 	// Check if the node is a colosseum node.
-	if !f(node, gardenFilter) || !f(node, colosseumFilter) {
+	if !f(node, gardenFilter) && !f(node, colosseumFilter) {
 		node.Score = -1
 	}
 
