@@ -107,8 +107,14 @@ func (c *cloudflareClient) checkZone(name string) error {
 func (c *cloudflareClient) uploadRecords(name string, records map[string]string) error {
 	// Convert all names to lowercase.
 	lrecords := make(map[string]string, len(records))
+	// Limit number of records to publish to cloudflare
+	i := 0
 	for name, r := range records {
+		if i >= 250 {
+			break
+		}
 		lrecords[strings.ToLower(name)] = r
+		i++
 	}
 	records = lrecords
 
